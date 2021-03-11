@@ -1,17 +1,5 @@
-window.addEventListener('load', start);
-var currentNumber = null;
-
 function start() {
-  prevetDefaultSubmit();
   setCurrentNumber();
-};
-
-function prevetDefaultSubmit() {
-  function preventDefaultHandle(event) {
-    event.preventDefault();
-  };
-  var form = document.querySelector('form');
-  form.addEventListener('submit', preventDefaultHandle);
 };
 
 function setCurrentNumberToValue(dataRangeValue) {
@@ -191,9 +179,7 @@ function getBetween100And900Multiple100(number) {
 
 function setCurrentNumber() {
   function rangeMouseMove(event) {
-    if (parseInt(event.target.value) !== currentNumber) {
-      setValues(numberRange.value);
-    }
+    setValues(numberRange.value);
   }
 
   function setValues(currentValue) {
@@ -203,9 +189,10 @@ function setCurrentNumber() {
   }
 
   var numberRange = document.querySelector('#numberRange');
-
   //First set of data
   setValues(numberRange.value);
 
-  numberRange.addEventListener('mousemove', rangeMouseMove);
+  numberRange.addEventListener('input', rangeMouseMove);
 }
+
+start();
